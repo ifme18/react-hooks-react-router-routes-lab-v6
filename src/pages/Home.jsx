@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import NavBar from '../components/NavBar';
+import React, { useEffect, useState } from "react";
+import NavBar from "../components/NavBar";
 import MovieCard from "../components/MovieCard";
 
 function Home() {
@@ -7,24 +7,19 @@ function Home() {
 
   useEffect(() => {
     fetch("http://localhost:4000/movies")
-      .then((r) => r.json())
-      .then(data => setMovies(data))
-      .catch(error => console.error(error));
+      .then(response => response.json())
+      .then(data => setMovies(data));
   }, []);
-
-  const movieList = movies.map(movie => (
-    <MovieCard key={movie.id} id={movie.id} title={movie.title} genres={movie.genres} />
-  ));
 
   return (
     <>
-      <header>
-        <NavBar />
-      </header>
-      <main>
-        <h1>Home Page</h1>
-        {movieList}
-      </main>
+      <NavBar />
+      <h1>Home Page</h1>
+      <div>
+        {movies.map(movie => (
+          <MovieCard key={movie.id} id={movie.id} title={movie.title} />
+        ))}
+      </div>
     </>
   );
 }

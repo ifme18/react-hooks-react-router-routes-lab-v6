@@ -1,16 +1,11 @@
-import { Link } from 'react-router-dom';
 
-function MovieCard({ id, title, genres }) {
+import { Link } from "react-router-dom";
+
+function MovieCard({ id, title }) {
   return (
     <article>
       <h2>{title}</h2>
-      <Link to={`/movie/${id}`}>View Info</Link>
-      <p>
-        {genres.map((genre) => (
-          <span key={genre}>{genre} </span>  
-        ))}
-        
-      </p>
+      <Link to={`/movie/${id}`}>View Details</Link>
     </article>
   );
 }
